@@ -1,0 +1,31 @@
+Port 2222
+ListenAddress 0.0.0.0
+
+Protocol 2
+UsePAM no
+
+PermitRootLogin no
+PasswordAuthentication yes
+KbdInteractiveAuthentication no
+PubkeyAuthentication yes
+PermitEmptyPasswords no
+
+# entrypoint.sh replaces this with the built-in TylerDurdenDev account.
+AllowUsers TylerDurdenDev
+AllowAgentForwarding no
+AllowTcpForwarding yes
+GatewayPorts no
+X11Forwarding no
+PermitTunnel no
+PermitUserEnvironment no
+
+ClientAliveInterval 300
+ClientAliveCountMax 2
+LoginGraceTime 30
+MaxAuthTries 5
+MaxSessions 10
+MaxStartups 10:30:60
+
+UseDNS no
+PrintMotd no
+Subsystem sftp /usr/lib/openssh/sftp-server

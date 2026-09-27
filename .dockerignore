@@ -1,0 +1,14 @@
+.git
+.github
+.gitignore
+.env
+.env.*
+*.log
+*.zip
+node_modules
+__pycache__
+.pytest_cache
+.vscode
+.DS_Store
+README.md
+DEPLOYMENT.md
