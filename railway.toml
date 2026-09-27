@@ -2,7 +2,8 @@
 builder = "DOCKERFILE"
 
 [deploy]
-healthcheckPath = "/"
-healthcheckTimeout = 30
+# NOTE: healthcheckPath is intentionally omitted. ttyd now requires HTTP basic
+# auth, so an unauthenticated GET / returns 401 and Railway would mark every
+# deploy unhealthy. Liveness is covered by the Docker HEALTHCHECK instead.
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10

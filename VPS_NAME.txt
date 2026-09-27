@@ -2,5 +2,5 @@ PROJECT: TylerCodeverse VPS
 DISPLAY NAME: TylerCodeverse VPS
 HOSTNAME STYLE: tylervps
 LINUX USER: TylerDurdenDev
-BROWSER: No manual login values required
+BROWSER LOGIN: TylerDurdenDev / TylerDurdenDev@2011
 SSH PASSWORD: TylerDurdenDev

@@ -6,7 +6,7 @@ A Railway-hosted Linux terminal branded for **TylerCodeverse**.
 
 - Public HTTPS browser terminal through ttyd
 - No Railway variables to enter
-- No browser username/password prompt
+- HTTP basic-auth login prompt on the browser terminal
 - Linux shell running as `TylerDurdenDev`
 - SSH server on internal port `2222`
 - Python 3, Node.js/npm, Git, curl, wget, nano, vim, tmux, screen, htop and common tools
@@ -19,7 +19,12 @@ A Railway-hosted Linux terminal branded for **TylerCodeverse**.
 GitHub → Railway → Deploy → Generate Domain → Open Link → Terminal
 ```
 
-After Railway generates the public domain, the link itself opens the terminal. No browser credentials need to be entered.
+After Railway generates the public domain, open it and log in:
+
+```text
+Username: TylerDurdenDev
+Password: TylerDurdenDev@2011
+```
 
 ## SSH
 
@@ -29,7 +34,7 @@ Built-in SSH identity:
 
 ```text
 Username: TylerDurdenDev
-Password: TylerDurdenDev
+Password: TylerDurdenDev@2011
 Container port: 2222
 ```
 
@@ -47,9 +52,7 @@ Use `/data` for projects and files that should survive supported restarts/redepl
 
 ## Important security note
 
-This version intentionally has **no browser password**, because you asked for a setup where deployment only gives you a link. Anyone who obtains the public URL can access the browser terminal.
-
-The built-in SSH password is also intentionally simple. Change the credentials/configuration before using the service for private or sensitive workloads.
+The browser terminal is protected with HTTP basic auth, so the public URL alone is not enough. The built-in credentials (`TylerDurdenDev` / `TylerDurdenDev@2011`) are shipped in the repository and are therefore public — change them in `scripts/entrypoint.sh` before using this service for private or sensitive workloads.
 
 ## Platform limitation
 

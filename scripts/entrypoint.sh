@@ -9,9 +9,13 @@ set -Eeuo pipefail
 # ================================================================
 
 WEB_USERNAME="TylerDurdenDev"
-SSH_PASSWORD="TylerDurdenDev"
-WEB_PORT="${PORT:-8080}"
-export WEB_USERNAME WEB_PORT
+SSH_PASSWORD="TylerDurdenDev@2011"
+
+# Railway injects $PORT at runtime. Pin it here so entrypoint, supervisord
+# and the healthcheck all agree on ONE port (hardcoding 8080 = 502 errors).
+export PORT="${PORT:-8080}"
+WEB_PORT="$PORT"
+export WEB_USERNAME SSH_PASSWORD WEB_PORT
 
 log() { printf '[TylerCodeverse VPS] %s\n' "$*" >&2; }
 
@@ -67,9 +71,9 @@ chown "$WEB_USERNAME:$WEB_USERNAME" \
   "/home/$WEB_USERNAME/.bashrc.d-railway"
 
 log "Starting TylerCodeverse VPS"
-log "Browser terminal: HTTP port ${WEB_PORT}"
+log "Browser terminal: http://0.0.0.0:${WEB_PORT} (Railway \$PORT=${PORT})"
 log "SSH: TCP port 2222"
 log "SSH username: ${WEB_USERNAME}"
-log "Browser authentication: disabled (URL access is the access key)"
+log "Browser authentication: basic auth (${WEB_USERNAME})"
 
 exec /usr/bin/supervisord -n -c /etc/supervisor/conf.d/supervisord.conf
